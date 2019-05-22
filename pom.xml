@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>edu.mum</groupId>
-    <artifactId>bloodbankrest</artifactId>
+    <artifactId>blood-bank-mvc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>bloodbankrest</name>
+    <name>BloodBankMVC</name>
     <description>REST based blood bank management system</description>
 
     <properties>
