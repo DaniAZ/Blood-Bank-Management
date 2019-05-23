@@ -11,8 +11,8 @@ public class HomeController {
     @RequestMapping({"/","/welcome"})
     public String welcome(Model model) {
 
-        model.addAttribute("greeting", "Welcome to our Blood Management System!!");
-        model.addAttribute("tagline", "The one and only place to live, work and play!!");
+        model.addAttribute("greeting", "Welcome to our Blood Bank Management System!!");
+        model.addAttribute("tagline", "Donate blood and save a life!!");
 
         return "welcome";
     }

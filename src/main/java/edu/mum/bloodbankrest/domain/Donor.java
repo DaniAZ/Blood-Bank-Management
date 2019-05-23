@@ -37,7 +37,7 @@ public class Donor{
 	private String medicalHistory;
 
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="donorId")
+	@JoinColumn(name="credentials_id")
 	UserCredentials userCredentials;
 
 	@OneToOne(fetch=FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.MERGE})

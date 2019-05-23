@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+                xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{dashboard_layout}">
 <head>
     <meta charset="UTF-8">
     <title>BloodDrives</title>
@@ -7,6 +8,7 @@
           href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 </head>
 <body>
+<div class="col" layout:fragment="main-content">
 <section class="container">
     <div class="row">
             <div class="col-sm-6 col-md-3" style="padding-bottom: 15px" th:each="bloodDrive,iterationStatus  : ${bloodDrives}">
@@ -28,5 +30,6 @@
 
     </div>
 </section>
+</div>
 </body>
 </html>

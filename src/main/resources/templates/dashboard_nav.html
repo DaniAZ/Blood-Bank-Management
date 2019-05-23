@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<nav  th:fragment="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">BloodBank</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown" sec:authorize="hasRole('STAFF')">
+                <a class="nav-link dropdown-toggle" href="#" id="donorDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Donor
+                </a>
+                <div class="dropdown-menu" aria-labelledby="donorDropdown">
+                    <a class="dropdown-item"  href="/donors/add" >Add Donor</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/donors/all">Donors List</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" sec:authorize="hasRole('STAFF')">
+                <a class="nav-link dropdown-toggle" href="#" id="donoationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Donation
+                </a>
+                <div class="dropdown-menu" aria-labelledby="donoationDropdown">
+                    <a class="dropdown-item"  href="/donations/add">Add Donation</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/donations/all">Donations List</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link dropdown-toggle" href="#" id="bloodDriveDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Blood Drive
+                </a>
+                <div class="dropdown-menu" aria-labelledby="bloodDriveDropdown">
+                    <a class="dropdown-item" href="/bloodDrives/add">Add Blood Drive</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/bloodDrives">Blood Drives List</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                <a class="nav-link dropdown-toggle" href="#" id="hospitalDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hospital
+                </a>
+                <div class="dropdown-menu" aria-labelledby="hospitalDropdown">
+                    <a class="dropdown-item" href="/hospitals/add">Add Hospital</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/hospitals/all">Hospitals List</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                <a class="nav-link dropdown-toggle" href="#" id="requestDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Blood Request
+                </a>
+                <div class="dropdown-menu" aria-labelledby="requestDropdown">
+                    <a sec:authorize="hasRole('NURSE')" class="dropdown-item" href="/requests/add">Create Request</a>
+                    <a sec:authorize="hasRole('STAFF')"class="dropdown-item" href="/requests/all">Display Requests</a>
+                </div>
+            </li>
+        </ul>
+        <span sec:authorize="!isAuthenticated()">
+            <a href="/login"  class="btn btn-outline-success my-2 my-sm-0  pull-right">Login</a>
+            <a href="/donors/add"  class="btn btn-outline-success my-2 my-sm-0  pull-right">Sign Up</a>
+        </span>
+        <span sec:authorize="isAuthenticated()">
+            <a href="/perform_logout" class="btn btn-outline-success my-2 my-sm-0  pull-right">Logout</a>
+        </span>
+
+    </div>
+</nav>
+</body>
+</html>

@@ -1,6 +1,6 @@
 
-INSERT INTO user_credentials(username,password,enabled) VALUES ('guest','$2a$10$0.ESlGysrPaiW5HaapKwoehzWt5AibgbPPOvMhDv8D6H26QQ/CwhS', TRUE);
-INSERT INTO user_credentials(username,password,enabled) VALUES ('admin','$2a$10$S/wlXEo/APzf.Sn1cO2p4.V12EJmaw.uzrHelMvkpuahjmHWnSafe', TRUE);
+INSERT INTO credentials(username,password,enabled) VALUES ('guest','$2y$12$r4.0DO/IVf.fOxZZkF46IOHVcS8OEF14XfVNOEeN9fEnV7lmA.18i', TRUE);
+INSERT INTO credentials(username,password,enabled) VALUES ('admin','$2y$12$6DM21.kSYYfloTVZguv/1OCpxK7ITlEd9I/xAn3nnwVcchZ0a3F7S', TRUE);
 
 INSERT INTO authority (id,username, authority) VALUES (1,'guest', 'ROLE_USER');
 INSERT INTO authority (id,username, authority) VALUES (2,'admin', 'ROLE_ADMIN');

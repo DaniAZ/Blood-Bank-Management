@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{dashboard_layout}"
+                xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col" layout:fragment="main-content">
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- <h2 class="text-center text-white mb-4">Login Form</h2> -->
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+
+                    <!-- form card login -->
+                    <div class="card rounded-0">
+                        <div class="card-header">
+                            <h3 class="mb-0">Login</h3>
+                        </div>
+                        <div class="card-body">
+                             <form action="/perform_login" method="post" class="form">
+                            <form class="form"  >
+                                <div class="form-group" th:if="${param.error}">
+                                        <p class="text-danger">Invalid Username or Password</p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="username" class="form-control form-control-lg rounded-0"  placeholder="Username">
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" class="form-control form-control-lg rounded-0"   placeholder="Password">
+                                </div>
+<!--                                </div>-->
+<!--                                <div>-->
+<!--                                    <label class="custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="checkbox" formControlName="remember">-->
+<!--                                        <span class="custom-control-indicator"></span>-->
+<!--                                        <span class="custom-control-description small text-dark">Remember me</span>-->
+<!--                                    </label>-->
+<!--                                </div>-->
+                                <button type="submit" class="btn btn-success btn-lg float-left" id="btnLogin" >Login</button>
+                            </form>
+                        </div>
+                        <!--/card-block-->
+                    </div>
+                    <!-- /form card login -->
+                </div>
+            </div>
+            <!--/row-->
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+</div>
+<!--/container-->
+</div>
+</body>
+</html>

@@ -1,22 +1,16 @@
-<html xmlns:form="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{dashboard_layout}"
+	  xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Blood Drive</title>
 </head>
 <body>
-	<section>
-		<div class="jumbotron">
-			<div class="container">
-				<h1>Valued Blood Drive</h1>
-				<p>Add a new one<p>
-			</div>
-		</div>
-	</section>
+<div class="col" layout:fragment="main-content">
 	<section class="container">
 		<form th:object="${newBloodDrive}" th:action="@{/bloodDrives/add}" method="post" class="form-horizontal" contentType="application/json"   >
 			<fieldset>
-				<legend>Add new BloodDrive</legend>
+				<h1>Add New Blood Drive</h1>
 
 				<th:errors path="*" cssClass="alert alert-danger" element="div"/>
 				<div class="form-group">
@@ -68,7 +62,7 @@
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="state">State</label>
 					<div class="col-lg-10">
-							<select th:field="*{address.state.id}" class="form-control mb-4 col-4">
+							<select th:field="*{address.state.id}" class="form-control mb-4 col-4" id="state">
 							<option th:each="state: ${states}" th:text="${state.code}" th:value="${state.id}"></option>
 						</select>
 					</div>
@@ -85,5 +79,6 @@
 			</fieldset>
 		</form>
 	</section>
+</div>
 </body>
 </html>
