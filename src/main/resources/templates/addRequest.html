@@ -41,7 +41,7 @@
 					<label class="control-label col-lg-2" for="quantity">Quantity</label>
 					<div class="col-lg-10">
 						<input id="quantity" th:field="*{quantity}" type="text" class="form:input-large"/>
-						<th:errors th:field="*{quantity}" cssClass="text-danger"/>
+						<span th:if="${#fields.hasErrors('quantity')}" th:errors ="*{quantity}" class="alert alert-danger"/>
 					</div>
 				</div>
 

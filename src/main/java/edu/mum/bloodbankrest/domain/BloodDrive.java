@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,10 +16,12 @@ public class BloodDrive {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
+	@NotEmpty
 	private String driveName;
+	@NotEmpty
 	private String phoneNumber;
 
+	@NotEmpty
 	@Email
 	private String email;
 

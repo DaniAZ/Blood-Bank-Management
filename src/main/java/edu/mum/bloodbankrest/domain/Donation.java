@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -17,6 +18,7 @@ public class Donation {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private boolean viable = true;
+	@Min(1)
 	private int quantity;
 
 	@Future
