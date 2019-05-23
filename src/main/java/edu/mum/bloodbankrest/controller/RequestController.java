@@ -4,6 +4,7 @@ import edu.mum.bloodbankrest.domain.BloodDrive;
 import edu.mum.bloodbankrest.domain.Hospital;
 import edu.mum.bloodbankrest.domain.Request;
 import edu.mum.bloodbankrest.service.BloodTypeService;
+import edu.mum.bloodbankrest.service.HospitalService;
 import edu.mum.bloodbankrest.service.RequestService;
 import edu.mum.bloodbankrest.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,14 @@ public class RequestController {
     private BloodTypeService bloodTypeService;
     @Autowired
     private StatusService statusService;
-    @GetMapping({"","/all"})
-    public List<Request> getAllRequest(Model model) {
-        return  (List<Request>)requestService.findAll();
+    @Autowired
+    private HospitalService hospitalService;
 
+    @GetMapping({"","/all"})
+    public String getAllRequest(Model model) {
+        model.addAttribute("requests",requestService.findAll());
+
+        return "request";
     }
 
     @GetMapping("/{id}")
@@ -41,6 +46,7 @@ public class RequestController {
 
     @GetMapping(value = "/add")
     public String getAddNewRequestForm(@ModelAttribute("newRequest") Request newRequest, Model model) {
+        model.addAttribute("hospitals",hospitalService.findAll());
         model.addAttribute("bloodTypes",bloodTypeService.findAll());
         model.addAttribute("status",statusService.findAll());
         return "addRequest";

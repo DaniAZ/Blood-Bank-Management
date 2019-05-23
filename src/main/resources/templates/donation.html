@@ -9,12 +9,20 @@
 </head>
 <body>
 <div class="col" layout:fragment="main-content">
+<section>
+    <div class="jumbotron">
+        <div class="container">
+            <h3> List of Donation</h3>
+        </div>
+    </div>
+</section>
 <section class="container">
     <div class="row">
             <div class="col-sm-6 col-md-3" style="padding-bottom: 15px" th:each="donation,iterationStatus  : ${donations}">
                 <div class="thumbnail">
                     <div class="caption">
                         <h3 th:text="${donation.quantity}"></h3>
+                        <h3 th:text="${donation.donationDate}"></h3>
 
                         <p>
                             <a th:href="@{'/donations/'+${donation.id}} "

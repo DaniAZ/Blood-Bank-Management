@@ -29,7 +29,7 @@ public class BloodDriveRestServiceImpl implements BloodDriveRestService {
         System.out.println(bloodDrive);
             RestTemplate restTemplate = restHelper.getRestTemplate();
             HttpEntity<BloodDrive> httpEntity = new HttpEntity<BloodDrive>(bloodDrive, restHelper.getHttpHeaders());
-            restTemplate.postForLocation(baseUrl,bloodDrive,BloodDrive.class);
+            restTemplate.postForLocation(baseUrlExtended+"add",bloodDrive,BloodDrive.class);
 
             return;
 

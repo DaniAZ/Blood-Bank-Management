@@ -2,6 +2,16 @@
 INSERT INTO credentials(username,password,enabled) VALUES ('guest','$2y$12$r4.0DO/IVf.fOxZZkF46IOHVcS8OEF14XfVNOEeN9fEnV7lmA.18i', TRUE);
 INSERT INTO credentials(username,password,enabled) VALUES ('admin','$2y$12$6DM21.kSYYfloTVZguv/1OCpxK7ITlEd9I/xAn3nnwVcchZ0a3F7S', TRUE);
 
+INSERT  INTO Status(id,name) values (1,'IMMEDIATE');
+INSERT  INTO Status(id,name) values (2,'NORMAL');
+INSERT  INTO Status(id,name) values (3,'OUT OF STOCK ');
+
+INSERT  INTO blood_type(id,name) values (1,'O');
+INSERT  INTO blood_type(id,name) values (2,'A');
+INSERT  INTO blood_type(id,name) values (3,'B');
+INSERT  INTO blood_type(id,name) values (4,'AB');
+INSERT  INTO blood_type(id,name) values (5,'O+');
+
 INSERT INTO authority (id,username, authority) VALUES (1,'guest', 'ROLE_USER');
 INSERT INTO authority (id,username, authority) VALUES (2,'admin', 'ROLE_ADMIN');
 

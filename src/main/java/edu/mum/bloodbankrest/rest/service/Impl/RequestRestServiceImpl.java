@@ -25,7 +25,7 @@ public class RequestRestServiceImpl implements RequestRestService {
     public void save(Request request) {
         RestTemplate restTemplate = restHelper.getRestTemplate();
         HttpEntity<Request> httpEntity = new HttpEntity<Request>(request, restHelper.getHttpHeaders());
-        request = restTemplate.postForObject(baseUrl, httpEntity, Request.class);
+        request = restTemplate.postForObject(baseUrlExtended +"add", httpEntity, Request.class);
         return ;
     }
 

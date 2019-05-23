@@ -1,6 +1,7 @@
 package edu.mum.bloodbankrest.rest.service.Impl;
 
 import edu.mum.bloodbankrest.domain.Donor;
+import edu.mum.bloodbankrest.domain.Total;
 import edu.mum.bloodbankrest.domain.UserCredentials;
 import edu.mum.bloodbankrest.rest.RestHttpHeader;
 import edu.mum.bloodbankrest.rest.service.DonorRestService;
@@ -25,7 +26,7 @@ public class DonorRestServiceImpl implements DonorRestService {
     public void save(Donor donor) {
         RestTemplate restTemplate = restHelper.getRestTemplate();
         HttpEntity<Donor> httpEntity = new HttpEntity<Donor>(donor, restHelper.getHttpHeaders());
-        donor = restTemplate.postForObject(baseUrl, httpEntity, Donor.class);
+        donor = restTemplate.postForObject(baseUrlExtended+"add", httpEntity, Donor.class);
         return ;
     }
 
@@ -40,6 +41,15 @@ public class DonorRestServiceImpl implements DonorRestService {
         HttpEntity httpEntity = new HttpEntity(restHelper.getHttpHeaders());
         ResponseEntity<Donor[]> responseEntity = restTemplate.exchange(baseUrl, HttpMethod.GET, httpEntity, Donor[].class);
         List<Donor> userList = Arrays.asList(responseEntity.getBody());
+        return userList;
+    }
+
+    @Override
+    public List<Total> findByBloodType() {
+        RestTemplate restTemplate = restHelper.getRestTemplate();
+        HttpEntity httpEntity = new HttpEntity(restHelper.getHttpHeaders());
+        ResponseEntity<Total[]> responseEntity = restTemplate.exchange(baseUrlExtended+"home", HttpMethod.GET, httpEntity, Total[].class);
+        List<Total> userList = Arrays.asList(responseEntity.getBody());
         return userList;
     }
 

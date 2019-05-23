@@ -1,7 +1,7 @@
 package edu.mum.bloodbankrest.service.impl;
 
 
-import edu.mum.bloodbankrest.dao.DonationDao;
+
 import edu.mum.bloodbankrest.domain.Donation;
 import edu.mum.bloodbankrest.rest.service.DonationRestService;
 import edu.mum.bloodbankrest.service.DonationService;
@@ -16,12 +16,11 @@ public class DonationServiceImpl implements DonationService {
 
      @Autowired
     private DonationRestService donationRestService;
-     @Autowired
-     private DonationDao donationDao;
+
 
     @Override
     public void save(Donation donation) {
-        donationDao.save(donation);
+        donationRestService.save(donation);
     }
 
     @Override

@@ -18,28 +18,28 @@
 					<label class="control-label col-lg-2 col-lg-2" for="firstName"> First Name</label>
 					<div class="col-lg-10">
 						<input id="firstName" th:field="*{firstName}" type="text" class="form:input-large"/>
-						<th:errors th:field="*{firstName}" cssClass="text-danger"/>
+						<span th:if="${#fields.hasErrors('firstName')}" th:errors ="*{firstName}" class="alert alert-danger"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="lastName"> Last Name</label>
 					<div class="col-lg-10">
 						<input id="lastName" th:field="*{lastName}" type="text" class="form:input-large"/>
-						<th:errors th:field="*{lastName}" cssClass="text-danger"/>
+						<span th:if="${#fields.hasErrors('lastName')}" th:errors ="*{lastName}" class="alert alert-danger"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="Age">Age</label>
 					<div class="col-lg-10">
 						<input id="Age" th:field="*{age}" type="text" class="form:input-large"/>
-						<th:errors th:field="*{age}" cssClass="text-danger"/>
+						<span th:if="${#fields.hasErrors('age')}" th:errors ="*{age}" class="alert alert-danger"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="Weight">Weight</label>
 					<div class="col-lg-10">
 						<input id="Weight" th:field="*{weight}" type="text" class="form:input-large"/>
-						<th:errors th:field="*{weight}" cssClass="text-danger"/>
+						<span th:if="${#fields.hasErrors('weight')}" th:errors ="*{weight}" class="alert alert-danger"/>
 					</div>
 				</div>
 
@@ -48,7 +48,7 @@
 					<label class="control-label col-lg-2" for="email">Email</label>
 					<div class="col-lg-10">
 						<input id="email" th:field="*{email}" type="text" class="form:input-large"/>
-						<th:errors th:field="*{email}" cssClass="text-danger"/>
+						<span th:if="${#fields.hasErrors('email')}" th:errors ="*{email}" class="alert alert-danger"/>
 					</div>
 				</div>
 
@@ -56,7 +56,7 @@
 					<label class="control-label col-lg-2" for="phoneNumber">Phone Number</label>
 					<div class="col-lg-10">
 						<input id="phoneNumber" th:field="*{phoneNumber}" type="text" class="form:input-large"/>
-						<th:errors th:field="*{phoneNumber}" cssClass="text-danger"/>
+						<span th:if="${#fields.hasErrors('phoneNumber')}" th:errors ="*{phoneNumber}" class="alert alert-danger"/>
 					</div>
 				</div>
 
@@ -64,28 +64,36 @@
 					<label class="control-label col-lg-2" for="street">Medical History</label>
 					<div class="col-lg-10">
 						<input id="street" th:field="*{medicalHistory}" type="text" class="form:input-large"/>
-						<th:errors th:field="*{medicalHistory}" cssClass="text-danger"/>
+						<span th:if="${#fields.hasErrors('medicalHistory')}" th:errors ="*{medicalHistory}" class="alert alert-danger"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-2" for="BloodType">Blood Type</label>
+					<div class="col-lg-10">
+						<select  th:field="*{bloodType.id}"  class="form-control mb-4 col-4">
+							<option th:each="blood: ${bloodTypes}" th:text="${blood.name}" th:value="${blood.id}"></option>
+						</select>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="street">Street</label>
 					<div class="col-lg-10">
 						<input id="street" th:field="*{address.street}" type="text" class="form:input-large"/>
-						<th:errors th:field="*{address.street}" cssClass="text-danger"/>
+						<span th:if="${#fields.hasErrors('address.street')}" th:errors ="*{address.street}" class="alert alert-danger"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="city">City</label>
 					<div class="col-lg-10">
 						<input id="city" th:field="*{address.city}" type="text" class="form:input-large"/>
-						<th:errors th:field="*{address.city}" cssClass="text-danger"/>
+						<span th:if="${#fields.hasErrors('address.city')}" th:errors ="*{address.city}" class="alert alert-danger"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="zipCode">Zip Code</label>
 					<div class="col-lg-10">
 						<input id="zipCode" th:field="*{address.zipCode}" type="text" class="form:input-large"/>
-						<th:errors th:field="*{address.zipCode}" cssClass="text-danger"/>
+						<span th:if="${#fields.hasErrors('address.zipCode')}" th:errors ="*{address.zipCode}" class="alert alert-danger"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -103,7 +111,7 @@
 						<input type="submit" id="btnAdd" class="btn btn-primary" value ="add"/>
 					</div>
 				</div>
-				
+				</div>
 			</fieldset>
 		</form>
 	</section>

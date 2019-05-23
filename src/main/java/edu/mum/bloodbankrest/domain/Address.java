@@ -24,7 +24,7 @@ public class Address {
 	@Size(min = 5, max = 10)
 	private String zipCode;
 
-	@OneToOne
+	@OneToOne(fetch=FetchType.EAGER)
 	private State state;
 
 	public Address() {
