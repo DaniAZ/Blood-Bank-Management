@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +20,13 @@ public class Hospital {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotEmpty
 	private String name;
 	@Email
 	private String email;
 
 	@OneToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@Valid
 	private Address address;
 
 	@OneToMany(mappedBy="hospital",fetch=FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })

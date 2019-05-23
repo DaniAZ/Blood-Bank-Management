@@ -25,7 +25,7 @@ public class Donor{
 	@NotEmpty
 	private String lastName;
 
-
+	@Min(value=16)
 	private int age;
 
 	private double weight;
