@@ -26,7 +26,7 @@ public class HospitalRestServiceImpl implements HospitalRestService {
     public void save(Hospital hospital) {
         RestTemplate restTemplate = restHelper.getRestTemplate();
         HttpEntity<Hospital> httpEntity = new HttpEntity<Hospital>(hospital, restHelper.getHttpHeaders());
-        hospital = restTemplate.postForObject(baseUrl, httpEntity, Hospital.class);
+        hospital = restTemplate.postForObject(baseUrlExtended+"add", httpEntity, Hospital.class);
         return ;
 
     }

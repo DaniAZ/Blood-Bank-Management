@@ -1,5 +1,6 @@
 package edu.mum.bloodbankrest.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@JsonIgnoreProperties
 public class BloodDrive {
 
 	@Id

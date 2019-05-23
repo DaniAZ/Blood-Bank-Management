@@ -6,6 +6,7 @@ import edu.mum.bloodbankrest.amqp.PracticalTipSender;
 import edu.mum.bloodbankrest.domain.BloodDrive;
 import edu.mum.bloodbankrest.domain.Donation;
 import edu.mum.bloodbankrest.domain.Donor;
+import edu.mum.bloodbankrest.service.BloodTypeService;
 import edu.mum.bloodbankrest.service.DonationService;
 import edu.mum.bloodbankrest.service.DonorService;
 import edu.mum.bloodbankrest.service.StateService;
@@ -32,6 +33,8 @@ public class DonorController {
     private RabbitTemplate rabbitTemplate;
     @Autowired
     PracticalTipSender practicalTipSender;
+    @Autowired
+    private BloodTypeService bloodTypeService;
 
     @GetMapping({"","/all"})
     public String getAllDonors(Model model) {
@@ -48,6 +51,7 @@ public class DonorController {
     @GetMapping(value = "/add")
     public String getAddNewBloodDriveForm(@ModelAttribute("newDonor") Donor newDonor,Model model) {
         model.addAttribute("states",stateService.findAll());
+        model.addAttribute("bloodTypes",bloodTypeService.findAll());
            return "addDonor";
     }
 

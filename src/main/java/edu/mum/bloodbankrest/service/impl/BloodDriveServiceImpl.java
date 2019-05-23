@@ -1,7 +1,7 @@
 package edu.mum.bloodbankrest.service.impl;
 
 
-import edu.mum.bloodbankrest.dao.BloodDriveDao;
+
 import edu.mum.bloodbankrest.domain.BloodDrive;
 import edu.mum.bloodbankrest.rest.service.BloodDriveRestService;
 import edu.mum.bloodbankrest.service.BloodDriveService;
@@ -17,13 +17,12 @@ import java.util.List;
 public class BloodDriveServiceImpl implements BloodDriveService {
     @Autowired
     private BloodDriveRestService bloodDriveRestService;
-    @Autowired
-    private BloodDriveDao bloodDriveDao;
+
 
     @Override
     public void save(BloodDrive bloodDrive) {
-      //bloodDriveRestService.save(bloodDrive);
-        bloodDriveDao.save(bloodDrive);
+      bloodDriveRestService.save(bloodDrive);
+      //  bloodDriveDao.save(bloodDrive);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class AddressRestServiceImpl implements AddressRestService {
     public void save(Address address) {
         RestTemplate restTemplate = restHelper.getRestTemplate();
         HttpEntity<Address> httpEntity = new HttpEntity<Address>(address, restHelper.getHttpHeaders());
-        address = restTemplate.postForObject(baseUrl, httpEntity, Address.class);
+        address = restTemplate.postForObject(baseUrlExtended+"add", httpEntity, Address.class);
         return ;
     }
 

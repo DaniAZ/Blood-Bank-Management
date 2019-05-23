@@ -1,18 +1,21 @@
 package edu.mum.bloodbankrest.controller;
 
 
+import edu.mum.bloodbankrest.amqp.PracticalTipSender;
 import edu.mum.bloodbankrest.domain.BloodDrive;
 import edu.mum.bloodbankrest.domain.Donation;
-import edu.mum.bloodbankrest.service.BloodDriveService;
-import edu.mum.bloodbankrest.service.BloodTypeService;
-import edu.mum.bloodbankrest.service.DonationService;
-import edu.mum.bloodbankrest.service.DonorService;
+import edu.mum.bloodbankrest.domain.MailMessage;
+import edu.mum.bloodbankrest.domain.Total;
+import edu.mum.bloodbankrest.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.sql.Date;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -27,7 +30,12 @@ public class DonationController {
     private BloodTypeService bloodTypeService;
     @Autowired
     private DonorService donorService;
-
+    @Autowired
+    private RequestService requestService;
+    @Autowired
+    PracticalTipSender practicalTipSender;
+    @Autowired
+    private BloodDriveService bloodDriveService;
 
     @GetMapping({"","/all"})
     public String getAllDonations(Model model) {
@@ -45,11 +53,26 @@ public class DonationController {
 
     @GetMapping(value = "/add")
     public String getAddNewDonationForm(@ModelAttribute("newDonation") Donation donation, Model model) {
-      //  model.addAttribute("donors",donorService.findAll());
-       //model.addAttribute("bloodTypes",bloodTypeService.findAll());
+        model.addAttribute("donors",donorService.findAll());
+       model.addAttribute("bloodDrives",bloodDriveService.findAll());
         return "addDonation";
     }
-
+    @GetMapping(value = "/home")
+    public String getdonationHome(@ModelAttribute("mailMessage") MailMessage mailMessage, Model model) {
+         model.addAttribute("requests",requestService.findAll());
+         model.addAttribute("totals",donorService.findByBloodType());
+        System.out.println(donorService.findByBloodType());
+        return "Homedonation";
+    }
+    @RequestMapping(value="/home", method = RequestMethod.POST)
+    public  String ProcessMailMessage(@ModelAttribute("mailMessage") @Valid MailMessage mailMessage , Model model, BindingResult result){
+        if(result.hasErrors()){
+            return "Homedonation";
+        }
+        model.addAttribute("confirmation","Email Send Successfully");
+        practicalTipSender.sendPracticalMailMessageTip(mailMessage);
+        return "Homedonation";
+    }
 
 
     @RequestMapping(value="/add", method = RequestMethod.POST)
@@ -58,8 +81,7 @@ public class DonationController {
 
         if(result.hasErrors())
             return "addDonation";
-        //this.bloodDrive.addDonation(donationTobeAddeded);
-      ///  donationTobeAddeded.setDonationDate(LocalDate.now());
+       donationTobeAddeded.setDonationDate(Date.valueOf(LocalDate.now()));
            donationService.save(donationTobeAddeded);
 
 

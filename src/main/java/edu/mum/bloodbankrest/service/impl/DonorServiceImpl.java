@@ -1,8 +1,10 @@
 package edu.mum.bloodbankrest.service.impl;
 
 
-import edu.mum.bloodbankrest.dao.DonorDao;
+
+import edu.mum.bloodbankrest.domain.BloodType;
 import edu.mum.bloodbankrest.domain.Donor;
+import edu.mum.bloodbankrest.domain.Total;
 import edu.mum.bloodbankrest.rest.service.DonorRestService;
 import edu.mum.bloodbankrest.service.DonorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,11 @@ public class DonorServiceImpl implements DonorService {
 
      @Autowired
      private DonorRestService donorRestService;
-     @Autowired
-     private DonorDao donorDao;
+
 
     @Override
     public void save(Donor donor) {
-         donorDao.save(donor);
+         donorRestService.save(donor);
     }
 
     @Override
@@ -34,6 +35,12 @@ public class DonorServiceImpl implements DonorService {
     public List<Donor> findAll() {
         return donorRestService.findAll();
     }
+
+    @Override
+    public List<Total> findByBloodType() {
+        return donorRestService.findByBloodType();
+    }
+
 
     @Override
     public Donor findOne(Long id) {

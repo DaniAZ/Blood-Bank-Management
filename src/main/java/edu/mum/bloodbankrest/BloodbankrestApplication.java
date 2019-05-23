@@ -24,7 +24,9 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 public class BloodbankrestApplication {
     public static final String EXCHANGE_NAME = "tips_tx";
     public static final String DEFAULT_PARSING_QUEUE = "default_parser_q";
+    public static final String MESSAGING_QUEUE = "Message_Queue";
     public static final String ROUTING_KEY = "tips";
+    public static final String ROUTING_KEY_Messaging = "mail";
 
     @Bean
     public TopicExchange tipsExchange() {
@@ -35,10 +37,19 @@ public class BloodbankrestApplication {
     public Queue defaultParsingQueue() {
         return new Queue(DEFAULT_PARSING_QUEUE);
     }
+    @Bean
+    public Queue messageParsingQueue() {
+        return new Queue(MESSAGING_QUEUE);
+    }
 
     @Bean
     public Binding queueToExchangeBinding() {
         return BindingBuilder.bind(defaultParsingQueue()).to(tipsExchange()).with(ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding queueToMessageExchangeBinding() {
+        return BindingBuilder.bind(messageParsingQueue()).to(tipsExchange()).with(ROUTING_KEY_Messaging);
     }
 
 

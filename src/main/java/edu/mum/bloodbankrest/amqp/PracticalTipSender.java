@@ -2,6 +2,7 @@ package edu.mum.bloodbankrest.amqp;
 
 import edu.mum.bloodbankrest.BloodbankrestApplication;
 import edu.mum.bloodbankrest.domain.Donor;
+import edu.mum.bloodbankrest.domain.MailMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -24,5 +25,10 @@ public class PracticalTipSender {
         //PracticalTipMessage tip = new PracticalTipMessage("Always use Immutable classes in Java", 1, false);
         rabbitTemplate.convertAndSend(BloodbankrestApplication.EXCHANGE_NAME, BloodbankrestApplication.ROUTING_KEY, donor);
         log.info("Practical Tip sent");
+    }
+    public void sendPracticalMailMessageTip(MailMessage mailMessage) {
+        //PracticalTipMessage tip = new PracticalTipMessage("Always use Immutable classes in Java", 1, false);
+        rabbitTemplate.convertAndSend(BloodbankrestApplication.EXCHANGE_NAME, BloodbankrestApplication.ROUTING_KEY_Messaging, mailMessage);
+        log.info("Practical Tip sent for MailMessage");
     }
 }

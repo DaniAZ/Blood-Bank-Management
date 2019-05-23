@@ -28,7 +28,7 @@ public class DonationRestServiceImpl implements DonationRestService {
     public void save(Donation donation) {
         RestTemplate restTemplate = restHelper.getRestTemplate();
         HttpEntity<Donation> httpEntity = new HttpEntity<Donation>(donation, restHelper.getHttpHeaders());
-        donation = restTemplate.postForObject(baseUrl, httpEntity, Donation.class);
+        donation = restTemplate.postForObject(baseUrlExtended+"add", httpEntity, Donation.class);
         return ;
     }
 

@@ -2,7 +2,7 @@ package edu.mum.bloodbankrest.service.impl;
 
 
 
-import edu.mum.bloodbankrest.dao.RequestDao;
+
 import edu.mum.bloodbankrest.domain.Request;
 import edu.mum.bloodbankrest.rest.service.RequestRestService;
 import edu.mum.bloodbankrest.service.RequestService;
@@ -18,11 +18,10 @@ public class RequestServiceImpl implements RequestService {
 
     @Autowired
     private RequestRestService requestRestService;
-    @Autowired
-    private RequestDao requestDao;
+
     @Override
     public void save(Request request) {
-        requestDao.save(request);
+        requestRestService.save(request);
     }
 
     @Override
