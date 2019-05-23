@@ -2,6 +2,7 @@ package edu.mum.bloodbankrest.controller;
 
 
 import com.sun.glass.ui.Application;
+import edu.mum.bloodbankrest.amqp.PracticalTipSender;
 import edu.mum.bloodbankrest.domain.BloodDrive;
 import edu.mum.bloodbankrest.domain.Donation;
 import edu.mum.bloodbankrest.domain.Donor;
@@ -29,6 +30,8 @@ public class DonorController {
     private StateService stateService;
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    PracticalTipSender practicalTipSender;
 
     @GetMapping({"","/all"})
     public String getAllDonors(Model model) {
@@ -57,7 +60,7 @@ public class DonorController {
         donorService.save(donorToBeAdded);
         //rabbitTemplate.convertAndSend(Application.topicExchangeName, "foo.bar.baz", "Hello from RabbitMQ!");
       //  receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
-
+        practicalTipSender.sendPracticalTip(donorToBeAdded);
           return "redirect:/";
     }
 }
